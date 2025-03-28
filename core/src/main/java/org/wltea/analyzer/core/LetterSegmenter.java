@@ -30,7 +30,7 @@ import java.util.Arrays;
  * 
  * 英文字符及阿拉伯数字子分词器
  */
-class LetterSegmenter implements ISegmenter {
+public class LetterSegmenter implements ISegmenter {
 	
 	//子分词器标签
 	static final String SEGMENTER_NAME = "LETTER_SEGMENTER";
@@ -72,7 +72,7 @@ class LetterSegmenter implements ISegmenter {
 	 */
 	private int arabicEnd;
 	
-	LetterSegmenter(){
+	public LetterSegmenter(){
 		Arrays.sort(Letter_Connector);
 		Arrays.sort(Num_Connector);
 		this.start = -1;

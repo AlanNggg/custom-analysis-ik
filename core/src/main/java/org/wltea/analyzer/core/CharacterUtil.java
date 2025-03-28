@@ -42,6 +42,9 @@ class CharacterUtil {
 	public static final int CHAR_OTHER_CJK = 0X00000008;
 
 	public static final int CHAR_SURROGATE = 0X00000016;
+	// Add new constant for special characters
+	public static final int CHAR_SYMBOL = 0X00000032;
+
 	/**
 	 * 识别字符类型
 	 * @param input
@@ -80,12 +83,39 @@ class CharacterUtil {
 			ub==Character.UnicodeBlock.HIGH_PRIVATE_USE_SURROGATES)
 			{
 				return CHAR_SURROGATE;
+			}else if(isPunctuation(input) || isSymbol(input)){
+					return CHAR_SYMBOL;
 			}
 		}
 		//其他的不做处理的字符
 		return CHAR_USELESS;
 	}
-	
+
+	/**
+	 * Check if character is punctuation
+	 */
+	private static boolean isPunctuation(char ch) {
+		int type = Character.getType(ch);
+		return type == Character.CONNECTOR_PUNCTUATION ||
+				type == Character.DASH_PUNCTUATION ||
+				type == Character.START_PUNCTUATION ||
+				type == Character.END_PUNCTUATION ||
+				type == Character.INITIAL_QUOTE_PUNCTUATION ||
+				type == Character.FINAL_QUOTE_PUNCTUATION ||
+				type == Character.OTHER_PUNCTUATION;
+	}
+
+	/**
+	 * Check if character is symbol
+	 */
+	private static boolean isSymbol(char ch) {
+		int type = Character.getType(ch);
+		return type == Character.MATH_SYMBOL ||
+				type == Character.CURRENCY_SYMBOL ||
+				type == Character.MODIFIER_SYMBOL ||
+				type == Character.OTHER_SYMBOL;
+	}
+
 	/**
 	 * 进行字符规格化（全角转半角，大写转小写处理）
 	 * @param input

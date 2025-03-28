@@ -40,7 +40,7 @@ import org.wltea.analyzer.dic.Dictionary;
  * 分词器上下文状态
  * 
  */
-class AnalyzeContext {
+public class AnalyzeContext {
 	
 	//默认缓冲区大小
 	private static final int BUFF_SIZE = 4096;
@@ -268,6 +268,11 @@ class AnalyzeContext {
 				index++;
 				this.lastUselessCharNum++;
 				continue;
+			}else if(CharacterUtil.CHAR_SYMBOL == this.charTypes[index]){
+				// Output special character as individual token
+				outputSpecialChar(index);
+				index++;
+				continue;
 			}
 			// 清空数值
 			this.lastUselessCharNum = 0;
@@ -306,7 +311,12 @@ class AnalyzeContext {
 		//清空当前的Map
 		this.pathMap.clear();
 	}
-	
+
+	private void outputSpecialChar(int index){
+		Lexeme specialCharLexeme = new Lexeme(this.buffOffset, index, 1, Lexeme.TYPE_SYMBOL);
+		this.results.add(specialCharLexeme);
+	}
+
 	/**
 	 * 对CJK字符进行单字输出
 	 * @param index

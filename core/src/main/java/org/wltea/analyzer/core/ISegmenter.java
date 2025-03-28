@@ -29,7 +29,7 @@ package org.wltea.analyzer.core;
  * 
  * 子分词器接口
  */
-interface ISegmenter {
+public interface ISegmenter {
 	
 	/**
 	 * 从分析器读取下一个可能分解的词元对象

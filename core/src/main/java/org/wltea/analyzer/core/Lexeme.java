@@ -49,7 +49,10 @@ public class Lexeme implements Comparable<Lexeme>{
 	public static final int TYPE_COUNT = 32;
 	//中文数量词
 	public static final int TYPE_CQUAN = 48;
-	
+
+	// Add new type for symbols
+	public static final int TYPE_SYMBOL = 128;  // Using next available power of 2
+
 	//词元的起始位移
 	private int offset;
     //词元的相对起始位置
@@ -241,7 +244,9 @@ public class Lexeme implements Comparable<Lexeme>{
 			
 		case TYPE_CQUAN:	
 			return "TYPE_CQUAN";
-			
+
+		case TYPE_SYMBOL:  // Add new case
+			return "SYMBOL";
 		default :
 			return "UNKONW";
 		}

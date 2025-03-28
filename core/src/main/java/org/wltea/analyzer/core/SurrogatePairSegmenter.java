@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * Surrogate Pair Segmenter
  */
-class SurrogatePairSegmenter implements ISegmenter {
+public class SurrogatePairSegmenter implements ISegmenter {
 
     static final String SEGMENTER_NAME = "SURROGATE_PAIR_SEGMENTER";
 
@@ -16,7 +16,7 @@ class SurrogatePairSegmenter implements ISegmenter {
     private int end;
     private Optional<Character> highSurrogate;
 
-    SurrogatePairSegmenter() {
+    public SurrogatePairSegmenter() {
         this.start = -1;
         this.end = -1;
         this.highSurrogate = Optional.empty();
